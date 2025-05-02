@@ -2,7 +2,7 @@ document.getElementById('skills').innerHTML = `
   <section class="skills">
     <h2>Key Skills</h2>
     <ul>
-      <li onclick="toggleDetails('mechanicalSkills')">
+      <li onclick="toggleDetails('mechanicalSkills'); trackSkillClick('Mechanical Engineering Expertise')">
         <strong>Mechanical Engineering Expertise</strong>
         
         <div id="mechanicalSkills" class="skill-details" style="display: none;">
@@ -17,7 +17,7 @@ document.getElementById('skills').innerHTML = `
           </ul>
         </div>
       </li>
-      <li onclick="toggleDetails('softwareSkills')">
+      <li onclick="toggleDetails('softwareSkills'); trackSkillClick('Software Development & IT Expertise')">
         <strong>Software Development & IT Expertise</strong> 
         <div id="softwareSkills" class="skill-details" style="display: none;">
           <ul>
@@ -29,7 +29,7 @@ document.getElementById('skills').innerHTML = `
           </ul>
         </div>
       </li>
-      <li onclick="toggleDetails('softSkills')">
+      <li onclick="toggleDetails('softSkills'); trackSkillClick('Soft Skills')">
         <strong>Soft Skills</strong> 
         <div id="softSkills" class="skill-details" style="display: none;">
           <ul>
@@ -68,5 +68,17 @@ function toggleDetails(skillId) {
     details.style.display = 'block'; // Expand the details
     arrow.textContent = '▲'; // Set to up arrow
     arrow.style.transform = 'rotate(180deg)'; // Add animation
+  }
+}
+
+// Function to track skill clicks
+function trackSkillClick(skillName) {
+  if (typeof gtag === 'function') {
+    gtag('event', 'skill_click', {
+      event_category: 'Skills',
+      event_label: skillName,
+    });
+  } else {
+    console.warn('Google Analytics is not initialized.');
   }
 }
