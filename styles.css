@@ -1,0 +1,333 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #333;
+}
+/* header styling */
+
+header {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+header p {
+  font-size: 1.2rem;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: #ffeb3b;
+}
+section {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #4facfe;
+}
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+footer a {
+  color: #4facfe;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Fade-in animation for headings */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+#about p {
+  text-align: justify;
+}
+
+/* Slide-in animation for list items */
+.slide-in {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideIn 1s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Modern styling for the projects section */
+.projects {
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.projects h2 {
+  text-align: center;
+  color: #4facfe;
+  margin-bottom: 1.5rem;
+}
+
+.projects ul {
+  list-style: none;
+  padding: 0;
+}
+
+.projects li {
+  background: white;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projects li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Hide project details by default */
+.project-details {
+  display: none;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-left: 4px solid #4facfe;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Add cursor pointer for clickable project items */
+.project-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.project-item:hover {
+  background-color: #f1f1f1;
+}
+#about strong {
+  font-weight: bold;
+  color: #007BFF; /* Highlighted in blue */
+}
+
+.skill-details {
+  display: none; /* Initially hidden */
+  margin-top: 10px;
+  padding-left: 20px;
+  border-left: 2px solid #007BFF;
+  animation: slideDown 0.3s ease-out;
+}
+
+.skill-details ul {
+  list-style-type: disc;
+}
+
+.skill-details li {
+  margin-bottom: 5px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skills li {
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.skills li strong {
+  color: #007BFF;
+}
+
+
+/* Styling for the experience section */
+.experience {
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.experience h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.experience ul {
+  list-style: none;
+  padding: 0;
+}
+
+.experience li {
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.experience li:hover {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.experience li strong {
+  font-size: 18px;
+  color: #007BFF;
+}
+
+.experience li span {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.experience-details {
+  display: none; /* Initially hidden */
+  margin-top: 10px;
+  padding-left: 20px;
+  border-left: 3px solid #007BFF;
+  animation: slideDown 0.3s ease-out;
+}
+
+.experience-details ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.experience-details li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Animation for smooth slide-down effect */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#goToTop {
+  position: fixed; /* Fixed position on the screen */
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px; /* Distance from the right */
+  display: none; /* Initially hidden */
+  background-color: #007BFF; /* Blue background */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  border-radius: 50%; /* Circular button */
+  width: 50px; /* Button width */
+  height: 50px; /* Button height */
+  font-size: 24px; /* Arrow size */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  z-index: 1000; /* Ensure it appears above other elements */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#goToTop:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+
+
+.skills-section {
+  background-color: #f9f9f9; /* Light background color */
+  padding: 20px; /* Add padding */
+  margin: 20px 0; /* Add spacing between sections */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.skills-section h2 {
+  font-size: 24px; /* Section title font size */
+  color: #333; /* Section title color */
+  margin-bottom: 15px; /* Spacing below the title */
+}
+
+.skills-section ul {
+  list-style-type: disc; /* Use bullet points */
+  padding-left: 20px; /* Indent the list */
+}
+
+.skills-section li {
+  margin-bottom: 10px; /* Spacing between list items */
+  font-size: 16px; /* Font size for list items */
+  color: #555; /* Text color for list items */
+   pointer-events: auto; /* Ensure clicks are allowed */
+}
+
+/* .arrow {
+  margin-left: 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+} */
+
+.arrow {
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  color: #007BFF; /* Highlight color on hover */
+}

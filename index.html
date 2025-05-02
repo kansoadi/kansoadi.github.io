@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adi Kanso Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Adi Kanso</h1>
+    <p>Mechanical Engineer & Full Stack Developer</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>A dual-qualified Mechanical Engineer and Full Stack Developer with over two decades of experience in power plant
+      operations, maintenance, quality management, and software development. Combines deep technical expertise in
+      <strong>mechanical engineering</strong> (<strong>gas/steam turbines</strong>, <strong>hydraulic/pneumatic
+        systems</strong>,
+      <strong>HVAC</strong>, <strong>boilers</strong>, and <strong>automation</strong>) with modern web development
+      capabilities
+      (<strong>JavaScript</strong>, <strong>React</strong>, <strong>Node.js</strong>, <strong>cloud platforms</strong>).
+      Proven track record in
+      <strong>optimizing industrial processes</strong>, <strong>leading cross-functional teams</strong>, and
+      <strong>developing scalable digital solutions</strong>.
+      Committed to <strong>innovation</strong>, <strong>sustainability</strong>, and <strong>ethical engineering
+        practices</strong>.
+    </p>
+    <p>A skilled Mechanical Engineer with over two decades of experience in power plant operations, maintenance, and
+      quality
+      management. Experience in <strong>gas and steam turbines</strong>, <strong>hydraulic and pneumatic
+        systems</strong>,
+      <strong>HVAC & heat pumps</strong>, <strong>pumps and valves</strong>, <strong>boiler systems</strong>, and
+      <strong>firefighting systems</strong>.
+      Extensive knowledge in <strong>electro-mechanical systems</strong>, including <strong>electrical motors</strong>,
+      <strong>transformers</strong>,
+      <strong>protection and control panels</strong>, and <strong>instrumentation devices</strong>. Experience in
+      <strong>Distributed Control Systems (DCS)</strong>
+      and <strong>Programmable Logic Controllers (PLC)</strong> for process automation, including designing and writing
+      PLC code using
+      <strong>CODESYS software</strong>. Proficient in <strong>CAD software</strong> such as <strong>Autodesk
+        Inventor</strong>. Adept at
+      <strong>optimizing operational efficiency</strong>, ensuring compliance with <strong>safety standards</strong>,
+      and
+      <strong>leading cross-functional teams</strong>.
+      Committed to <strong>ethical practices</strong>, <strong>sustainability</strong>, and <strong>innovation in
+        engineering</strong>.
+    </p>
+  </section>
+
+  <!-- Include external sections -->
+  <div id="skills"></div>
+  <div id="education"></div>
+  <div id="experience"></div>
+  <div id="projects"></div>
+
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:eng.kansoadi@gmail.com">eng.kansoadi@gmail.com</a></p>
+    <p>Phone: +31 0635689472</p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/adi-kanso/" target="_blank">LinkedIn Profile</a></p>
+    <p>GitHub: <a href="https://github.com/kansoadi">GitHub Repository</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Adi KANSO. Built with passion and professionalism.</p>
+  </footer>
+
+  <script>
+    // Dynamically set the current year in the footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script src="skills.js"></script>
+  <script src="education.js"></script>
+  <script src="experience.js"></script>
+  <script src="projects.js"></script>
+
+
+  <!-- Go to Top Button -->
+  <button id="goToTop" onclick="scrollToTop()">↑</button>
+
+  <script>
+    // Show the "Go to Top" button when scrolling down
+    const goToTopButton = document.getElementById('goToTop');
+    window.onscroll = function () {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        goToTopButton.style.display = 'block';
+      } else {
+        goToTopButton.style.display = 'none';
+      }
+    };
+
+    // Scroll to the top of the page
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+
+</html>
