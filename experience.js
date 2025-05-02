@@ -4,7 +4,7 @@ document.getElementById('experience').innerHTML = `
   <section class="skills">
     <h2>Professional Experience</h2>
     <ul>
-       <li id="edlExperienceItem">
+       <li id="edlExperienceItem" onclick="toggleDetails('qualityManagerAndMechanicalEngineer') ; trackExperienceClick('qualityManagerAndMechanicalEngineer')">
         <strong>Quality Manager & Mechanical Engineer</strong> 
         <span>Electricité Du Liban (EDL) – Zahrani Power Plant | 2014 – 2024</span>
          <div id="edlExperience" class="experience-details" style="display: none;">
@@ -22,7 +22,7 @@ document.getElementById('experience').innerHTML = `
           </ul>
         </div>
       </li>
-      <li onclick="toggleDetails('meesExperience')">
+      <li onclick="toggleDetails('meesExperience') ; trackExperienceClick('meesExperience')">
         <strong>Mechanical Engineer</strong> 
         <span>MEES Int. – Beirut, Lebanon | 2001 – 2014</span>
         <div id="meesExperience" class="experience-details">
@@ -35,7 +35,7 @@ document.getElementById('experience').innerHTML = `
           </ul>
         </div>
       </li>
-      <li onclick="toggleDetails('instructorExperience')">
+      <li onclick="toggleDetails('instructorExperience') ; trackExperienceClick('instructorExperience')">
         <strong>Instructor</strong> 
         <span>CNAM & Lebanese University | 2012 – 2014</span>
         <div id="instructorExperience" class="experience-details">
@@ -75,5 +75,27 @@ function toggleDetails(experienceId) {
   } else {
     details.style.display = 'block'; // Expand the details
     arrow.textContent = '▲'; // Set to up arrow
+  }
+}
+
+function trackExperienceClick(experienceName) {
+  if (typeof gtag === 'function') {
+    // Send event to Google Analytics
+    if (experienceName === 'qualityManagerAndMechanicalEngineer') {
+      gtag('event', 'quality_manager_and_mechanical_engineer', {
+        event_category: 'Experience',
+        event_label: 'Quality Manager & Mechanical Engineer',
+      });
+    } else if (experienceName === 'meesExperience') {
+      gtag('event', 'mees_experience', {
+        event_category: 'Experience',
+        event_label: 'Mechanical Engineer at MEES Int.',
+      });
+    } else if (experienceName === 'instructorExperience') {
+      gtag('event', 'instructor_experience', {
+        event_category: 'Experience',
+        event_label: 'Instructor at CNAM & Lebanese University',
+      });
+    }
   }
 }
