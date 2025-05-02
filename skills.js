@@ -2,7 +2,7 @@ document.getElementById('skills').innerHTML = `
   <section class="skills">
     <h2>Key Skills</h2>
     <ul>
-      <li onclick="toggleDetails('mechanicalSkills'); trackSkillClick('Mechanical Engineering Expertise')">
+      <li onclick="toggleDetails('mechanicalSkills'); trackSkillClick('mechanicalSkills')">
         <strong>Mechanical Engineering Expertise</strong>
         
         <div id="mechanicalSkills" class="skill-details" style="display: none;">
@@ -17,7 +17,7 @@ document.getElementById('skills').innerHTML = `
           </ul>
         </div>
       </li>
-      <li onclick="toggleDetails('softwareSkills'); trackSkillClick('Software Development & IT Expertise')">
+      <li onclick="toggleDetails('softwareSkills'); trackSkillClick('softwareSkills')">
         <strong>Software Development & IT Expertise</strong> 
         <div id="softwareSkills" class="skill-details" style="display: none;">
           <ul>
@@ -29,7 +29,7 @@ document.getElementById('skills').innerHTML = `
           </ul>
         </div>
       </li>
-      <li onclick="toggleDetails('softSkills'); trackSkillClick('Soft Skills')">
+      <li onclick="toggleDetails('softSkills'); trackSkillClick('softSkills')">
         <strong>Soft Skills</strong> 
         <div id="softSkills" class="skill-details" style="display: none;">
           <ul>
@@ -74,10 +74,28 @@ function toggleDetails(skillId) {
 // Function to track skill clicks
 function trackSkillClick(skillName) {
   if (typeof gtag === 'function') {
-    gtag('event', 'skill_click', {
-      event_category: 'Skills',
-      event_label: skillName,
-    });
+    // Send event to Google Analytics
+    if (skillName === 'mechanicalSkills') {
+      gtag('event', 'mechanical_Skills', {
+        event_category: 'Skills',
+        event_label: 'Mechanical Engineering Expertise',
+      });
+    } else if (skillName === 'softwareSkills') {
+      gtag('event', 'software_Skills', {
+        event_category: 'Skills',
+        event_label: 'Software Development & IT Expertise',
+      });
+    } else if (skillName === 'softSkills') {
+      gtag('event', 'soft_Skills', {
+        event_category: 'Skills',
+        event_label: 'Soft Skills',
+      });
+    } else {
+      gtag('event', 'skill_click', {
+        event_category: 'Skills',
+        event_label: skillName,
+      });
+    }
   } else {
     console.warn('Google Analytics is not initialized.');
   }
