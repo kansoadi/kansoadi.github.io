@@ -166,9 +166,10 @@ h2::after {
 .projects ul {
   list-style: none;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grid layout */
-  gap: 1.5rem;
+  /* Removed grid layout for vertical stacking */
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+  gap: 1.5rem; /* Keep gap for vertical spacing */
 }
 
 .projects li.project-item {
