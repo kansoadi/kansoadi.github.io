@@ -70,7 +70,11 @@
         document.body.appendChild(ipDisplay);
 
         // Generate encryption key
-        const key = await generateKey();
+        // const key = await generateKey();
+        // use a static key instead of generating a new one each time
+        const keyHex = '000102030405060708090a0b0c0d0e0f'; // Replace with your static key (32 bytes in hex)
+
+
 
         // Define a static IV (Hexadecimal format)
         const staticIVHex = '1a2b3c4d5e6f7g8h9i0j1k2l'; // Replace with your static IV (12 bytes in hex)
