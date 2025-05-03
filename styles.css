@@ -484,3 +484,12 @@ footer a:hover {
   }
 }
 
+.education-icon {
+  transition: transform 0.3s ease; /* Smooth zoom effect */
+  width: 20px; /* Adjust as needed */
+  height: 20px; /* Adjust as needed */
+}
+
+.education-icon:hover {
+  transform: scale(1.5); /* Zoom 1.5x on hover */
+}

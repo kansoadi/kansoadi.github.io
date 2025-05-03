@@ -47,21 +47,39 @@ const certificationsData = [
   },
 ];
 
+// function generateEducationHTML(education) {
+//   return `
+//     <li>
+//       <div class="education-item">
+//         <img src="${education.icon}" alt="${education.institution}" class="education-icon">
+//         <div>
+//           <h4>${education.degree}</h4>
+//           <p>${education.institution}</p>
+//           <span>${education.years}</span>
+//         </div>
+//       </div>
+//     </li>
+//   `;
+// }
+
 function generateEducationHTML(item) {
   return `
-    <li>
-     
-      <img src="${item.icon}" alt="${item.institution}" style="width: 20px; height: 20px; margin-right: 8px; border-radius: 50%;">
-      <strong>${item.degree}</strong> | ${item.institution} | ${item.years}
+    <li style="display: flex; align-items: center; margin-bottom: 8px;">
+      <img src="${item.icon}" alt="${item.institution}" style="width: 40px; height: 40px; margin-right: 8px;" class="education-icon">
+      <div>
+        <strong>${item.degree}</strong> | ${item.institution} | ${item.years}
+      </div>
     </li>
   `;
 }
 
 function generateCertificationHTML(item) {
   return `
-    <li>
-      <img src="${item.icon}" alt="${item.institution}" style="width: 20px; height: 20px; margin-right: 8px; border-radius: 50%;">
-      ${item.name} (${item.institution}, ${item.year})
+    <li style="display: flex; align-items: center; margin-bottom: 8px;">
+      <img src="${item.icon}" alt="${item.institution}" style="width: 40px; height: 40px; margin-right: 8px;" class="education-icon">
+      <div>
+        ${item.name} (${item.institution}, ${item.year})
+      </div>
     </li>
   `;
 }
