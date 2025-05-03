@@ -5,9 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adi Kanso Portfolio</title>
+  <link rel="icon" href="logo.png" type="image/png"> <!-- Add this line -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Google tag (gtag.js) - Ensure this remains untouched -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E5T9QWTKTK"></script>
@@ -74,13 +77,13 @@
         // IMPORTANT: Replace with your actual static key (32 bytes in hex)
         // This key must be kept secret and managed securely.
         // Example key (DO NOT USE THIS IN PRODUCTION):
-        const keyHex = "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f"; 
+        const keyHex = "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f";
         const key = await crypto.subtle.importKey(
-            "raw", 
-            new Uint8Array(keyHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16))),
-            { name: "AES-GCM" },
-            false, // Not extractable
-            ["encrypt"]
+          "raw",
+          new Uint8Array(keyHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16))),
+          { name: "AES-GCM" },
+          false, // Not extractable
+          ["encrypt"]
         );
 
         // Define a static IV (Hexadecimal format)
@@ -124,13 +127,15 @@
   <main>
     <section id="about" class="fade-in-on-scroll">
       <h2>About Me</h2>
-      <p>A dual-qualified Mechanical Engineer and Full Stack Developer with over two decades of experience in power plant
+      <p>A dual-qualified Mechanical Engineer and Full Stack Developer with over two decades of experience in power
+        plant
         operations, maintenance, quality management, and software development. Combines deep technical expertise in
         <strong>mechanical engineering</strong> (<strong>gas/steam turbines</strong>, <strong>hydraulic/pneumatic
           systems</strong>,
         <strong>HVAC</strong>, <strong>boilers</strong>, and <strong>automation</strong>) with modern web development
         capabilities
-        (<strong>JavaScript</strong>, <strong>React</strong>, <strong>Node.js</strong>, <strong>cloud platforms</strong>).
+        (<strong>JavaScript</strong>, <strong>React</strong>, <strong>Node.js</strong>, <strong>cloud
+          platforms</strong>).
         Proven track record in
         <strong>optimizing industrial processes</strong>, <strong>leading cross-functional teams</strong>, and
         <strong>developing scalable digital solutions</strong>.
@@ -143,11 +148,13 @@
           systems</strong>,
         <strong>HVAC & heat pumps</strong>, <strong>pumps and valves</strong>, <strong>boiler systems</strong>, and
         <strong>firefighting systems</strong>.
-        Extensive knowledge in <strong>electro-mechanical systems</strong>, including <strong>electrical motors</strong>,
+        Extensive knowledge in <strong>electro-mechanical systems</strong>, including <strong>electrical
+          motors</strong>,
         <strong>transformers</strong>,
         <strong>protection and control panels</strong>, and <strong>instrumentation devices</strong>. Experience in
         <strong>Distributed Control Systems (DCS)</strong>
-        and <strong>Programmable Logic Controllers (PLC)</strong> for process automation, including designing and writing
+        and <strong>Programmable Logic Controllers (PLC)</strong> for process automation, including designing and
+        writing
         PLC code using
         <strong>CODESYS software</strong>. Proficient in <strong>CAD software</strong> such as <strong>Autodesk
           Inventor</strong>. Adept at
@@ -165,12 +172,20 @@
     <div id="experience" class="fade-in-on-scroll"></div>
     <div id="projects" class="fade-in-on-scroll"></div>
 
-    <section id="contact" class="fade-in-on-scroll">
+    <section id="contact" class="fade-in-on-scroll"
+      style="display: flex; flex-direction: column; align-items: center; text-align: center;">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:eng.kansoadi@gmail.com">eng.kansoadi@gmail.com</a></p>
       <p>Phone: +31 0635689472</p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/adi-kanso/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></p>
-      <p>GitHub: <a href="https://github.com/kansoadi" target="_blank" rel="noopener noreferrer">GitHub Repository</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/adi-kanso/" target="_blank" rel="noopener noreferrer">LinkedIn
+          Profile</a></p>
+      <p>GitHub: <a href="https://github.com/kansoadi" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+      </p>
+      <p>
+        <a href="https://kansoadi.github.io/" target="_blank" rel="noopener noreferrer">
+          <img src="qr-code-AK.png" alt="QR Code for Contact" style="width: 150px; height: 150px; margin-top: 16px;">
+        </a>
+      </p>
     </section>
   </main>
 
@@ -216,4 +231,3 @@
 </body>
 
 </html>
-
