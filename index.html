@@ -108,6 +108,19 @@
       .catch(error => console.error("Error fetching or encrypting IP address:", error));
   </script>
 
+  <script>
+    // Function to send the WhatsApp event to Google Analytics
+    function sendWhatsAppEvent() {
+      if (typeof gtag === "function") {
+        gtag("event", "WhatsApp", {
+          event_category: "Contact",
+          event_label: "Phone Click",
+          value: 1
+        });
+      }
+    }
+  </script>
+
 </head>
 
 <body>
@@ -176,7 +189,11 @@
       style="display: flex; flex-direction: column; align-items: center; text-align: center;">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:eng.kansoadi@gmail.com">eng.kansoadi@gmail.com</a></p>
-      <p>Phone: <a href="https://wa.me/31635689472" target="_blank" rel="noopener noreferrer">+31 0635689472</a></p>
+      <p>
+        Phone:
+        <a href="https://wa.me/31635689472" target="_blank" rel="noopener noreferrer" onclick="sendWhatsAppEvent()">+31
+          0635689472</a>
+      </p>
       <p>LinkedIn: <a href="https://www.linkedin.com/in/adi-kanso/" target="_blank" rel="noopener noreferrer">LinkedIn
           Profile</a></p>
       <p>GitHub: <a href="https://github.com/kansoadi" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
