@@ -20,6 +20,22 @@ const educationData = [
 
 const certificationsData = [
   {
+    name: 'Machine Learning',
+    institution: 'SE Factory',
+    // icon: 'fa-solid fa-brain', // Optional icon for machine learning
+    icon: 'sefactory.png',
+    url: 'https://www.sefactory.io/',
+    year: 2025,
+  },
+  {
+    name: 'Introduction to DevOps, MLOps, and DataOps course',
+    institution: 'SE Factory',
+    // icon: 'fa-solid fa-server', // Optional icon for DevOps
+    icon: 'sefactory.png',
+    url: 'https://www.sefactory.io/',
+    year: 2025,
+  },
+  {
     name: 'Full Stack Web Developer',
     institution: 'ESIEE-IT',
     // icon: 'fa-solid fa-laptop-code', // Icon for coding/tech
