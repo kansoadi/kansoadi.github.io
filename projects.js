@@ -92,24 +92,39 @@ const projectsData = [
     analyticsTag: 'fullStackBootcamp',
   },
   {
-    id: 'project7',
+    id: 'project10',
     title:
-      'SaveMohamad Medical Fundraising Campaign | Full-Stack Developer (Solo) | March 2026',
+      'EduLearn | Next.js + TypeScript Learning Platform | Lebanese Education System | Jun 2026',
     details: [
-      'A personal fundraising initiative for urgent BMT treatment for my son',
-      'Campaign Website (Next.js 14 + TypeScript): Built a multilingual medical fundraising platform supporting 9 languages (EN, AR, FR, DE, NL, TR, ES, PT, IT) with RTL support for Arabic.',
-      'Real-time Features: Implemented medical progress tracking with timeline visualization, health status updates, and a multi-platform donation hub integrating international fundraising platforms (Fundahope, etc.).',
-      'Analytics & Optimization: Integrated Vercel Analytics and Google Analytics for campaign performance monitoring, with location-aware donation routing and GDPR-compliant geolocation consent.',
-      'Admin Dashboard: Developed a password-protected local CMS with Cloudinary-integrated media management, pre-composed social media message generator, and an Instagram Reels generator featuring canvas-based visual slide editing, text overlay, custom fonts, multi-aspect ratio support (9:16, 1:1, 4:5), and bulk export to PNG.',
-      'Technical Highlights: TypeScript + Next.js App Router, JSON-based content management, Canvas API for dynamic reel rendering, and direct GitHub commit/push from dashboard.',
+      'Built role-based auth and admin content builder for subjects, topics, and exercises.',
+      'Developed grade-aware student learning and practice flows with localized UI and clean logout/state handling.',
+      'Implemented JSON-backed data fallback for offline-style development and resilient content delivery.',
     ],
-    link: 'https://saveachild-mohamad.vercel.app/',
-    linkText: 'SaveMohamad Campaign',
+    link: 'https://edulearning-topaz.vercel.app/',
+    linkText: 'Live EduLearn App',
     imageSrc: null,
-    imageAlt: 'SaveMohamad Medical Fundraising Campaign',
+    imageAlt: 'EduLearn Learning Platform',
     caption:
-      'Multilingual medical fundraising platform with AI-powered admin dashboard.',
-    analyticsTag: 'saveMohamad',
+      'Next.js app for Lebanese education managing for evaluation the grade 9 and 10 French topics with admin tools.',
+    analyticsTag: 'eduLearn',
+  },
+  {
+    id: 'project11',
+    title:
+      'EduNova | E-learning Platform Proposal | Lebanese School | Next.js + TypeScript | May 2026',
+    details: [
+      'Proposed a scalable e-learning platform with student, teacher, parent, supervisor, and admin dashboards.',
+      'Built with Next.js, TypeScript, Tailwind CSS, App Router, server-side routes, and localized pages.',
+      'Implemented class schedules, lessons, assignments, announcements, messaging, notifications, auth guard, role-based access, and multi-language support.',
+      'Delivered JSON-driven UI and reusable React components for a modern school learning proposal.',
+    ],
+    link: 'https://edunova-lyart.vercel.app/',
+    linkText: 'Live EduNova Proposal',
+    imageSrc: null,
+    imageAlt: 'EduNova E-learning Platform Proposal',
+    caption:
+      'A Next.js/Tailwind school e-learning proposal focused on classroom management and student progress.',
+    analyticsTag: 'eduNova',
   },
   {
     id: 'project8',
@@ -128,6 +143,26 @@ const projectsData = [
     caption:
       'Engineering showcase website with custom CMS and WordPress integration.',
     analyticsTag: 'nexaStruct',
+  },
+  {
+    id: 'project7',
+    title:
+      'SaveMohamad Medical Fundraising Campaign | Full-Stack Developer (Solo) | March 2026',
+    details: [
+      'A personal fundraising initiative for urgent BMT treatment for my son',
+      'Campaign Website (Next.js 14 + TypeScript): Built a multilingual medical fundraising platform supporting 9 languages (EN, AR, FR, DE, NL, TR, ES, PT, IT) with RTL support for Arabic.',
+      'Real-time Features: Implemented medical progress tracking with timeline visualization, health status updates, and a multi-platform donation hub integrating international fundraising platforms (Fundahope, etc.).',
+      'Analytics & Optimization: Integrated Vercel Analytics and Google Analytics for campaign performance monitoring, with location-aware donation routing and GDPR-compliant geolocation consent.',
+      'Admin Dashboard: Developed a password-protected local CMS with Cloudinary-integrated media management, pre-composed social media message generator, and an Instagram Reels generator featuring canvas-based visual slide editing, text overlay, custom fonts, multi-aspect ratio support (9:16, 1:1, 4:5), and bulk export to PNG.',
+      'Technical Highlights: TypeScript + Next.js App Router, JSON-based content management, Canvas API for dynamic reel rendering, and direct GitHub commit/push from dashboard.',
+    ],
+    link: 'https://saveachild-mohamad.vercel.app/',
+    linkText: 'SaveMohamad Campaign',
+    imageSrc: null,
+    imageAlt: 'SaveMohamad Medical Fundraising Campaign',
+    caption:
+      'Multilingual medical fundraising platform with AI-powered admin dashboard.',
+    analyticsTag: 'saveMohamad',
   },
   {
     id: 'project9',
