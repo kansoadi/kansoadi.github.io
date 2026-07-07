@@ -123,8 +123,13 @@
       top: 0;
       z-index: 20;
       backdrop-filter: blur(16px);
-      background: rgba(245, 247, 251, 0.92);
+      background: rgba(255, 255, 255, 0.92);
       border-bottom: 1px solid var(--border);
+    }
+
+    [data-theme="dark"] header {
+      background: rgba(15, 23, 42, 0.92);
+      border-bottom-color: rgba(148, 163, 184, 0.20);
     }
 
     .container {
@@ -625,6 +630,10 @@
         justify-content: center;
       }
 
+      .section {
+        padding: 1.5rem 0;
+      }
+
       .section-title,
       .section-intro,
       .project-card h3,
@@ -660,6 +669,10 @@
       .resume-panel {
         padding: 1.2rem;
       }
+
+      .cta-panel {
+        padding: 1.5rem;
+      }
     }
 
     @media (max-width: 720px) {
@@ -676,11 +689,12 @@
       }
 
       .section {
-        padding: 2.5rem 0;
+        padding: 1.5rem 0;
       }
 
       .cta-panel {
         grid-template-columns: 1fr;
+        padding: 1.5rem;
       }
     }
   </style>
