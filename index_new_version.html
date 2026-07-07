@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adi Kanso | Mechanical Engineer & Full Stack Developer</title>
+  <link rel="icon" href="Logo.PNG" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Google tag (gtag.js) - Ensure this remains untouched -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E5T9QWTKTK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-E5T9QWTKTK");
+  </script>
+
+  <!-- IP Encryption Script - Ensure this remains untouched -->
+  <script>
+    async function generateKey() {
+      return crypto.subtle.generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]);
+    }
+
+    async function encryptIP(ip, key, staticIVHex) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(ip);
+      const iv = new Uint8Array(staticIVHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+      const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, data);
+      return {
+        encryptedData: Array.from(new Uint8Array(encrypted)).map(b => b.toString(16).padStart(2, "0")).join(""),
+        iv: staticIVHex,
+      };
+    }
+
+    fetch("https://api.ipify.org?format=json")
+      .then(response => response.json())
+      .then(async data => {
+        const ipAddress = data.ip;
+        const keyHex = "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f";
+        const key = await crypto.subtle.importKey("raw", new Uint8Array(keyHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16))), { name: "AES-GCM" }, false, ["encrypt"]);
+        const staticIVHex = "1a2b3c4d5e6f708090a0b0c0";
+        const { encryptedData, iv } = await encryptIP(ipAddress, key, staticIVHex);
+        gtag("event", "user_ip", { encrypted_ip: encryptedData, iv });
+      })
+      .catch(error => console.error("Error fetching or encrypting IP address:", error));
+  </script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-alt: #eef2f7;
+      --text: #14213d;
+      --muted: #52627a;
+      --accent: #1d4ed8;
+      --accent-strong: #0f56d3;
+      --border: rgba(20, 33, 61, 0.08);
+      --shadow: 0 24px 80px rgba(14, 30, 73, 0.08);
+      --radius: 24px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #07101f;
+      --surface: #0f172a;
+      --surface-alt: #111f38;
+      --text: #f8fbff;
+      --muted: #d0d7e4;
+      --accent: #60a5fa;
+      --accent-strong: #3b82f6;
+      --border: rgba(148, 163, 184, 0.20);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, rgba(29, 78, 216, 0.10), transparent 35%), var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 20% 10%, rgba(29, 78, 216, 0.12), transparent 18%), radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.09), transparent 12%);
+      pointer-events: none;
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(245, 247, 251, 0.92);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(1.35rem, 2vw, 1.9rem);
+      letter-spacing: -0.03em;
+    }
+
+    .brand p {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 999px;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: rgba(29, 78, 216, 0.08);
+      color: var(--accent-strong);
+      outline: none;
+    }
+
+    .theme-toggle {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--accent-strong);
+      display: grid;
+      place-items: center;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      background: var(--surface-alt);
+    }
+
+    main {
+      padding: 2rem 0 4rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.9fr);
+      gap: 2.5rem;
+      align-items: center;
+      padding: 4rem 0 3rem;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      color: var(--accent-strong);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .hero-copy h2 {
+      margin: 0;
+      font-size: clamp(2.75rem, 5vw, 4.25rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .hero-copy p {
+      margin: 1.5rem 0 0;
+      max-width: 44rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      border-radius: 999px;
+      padding: 0.95rem 1.45rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: white;
+      box-shadow: 0 18px 45px rgba(29, 78, 216, 0.18);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 24px 54px rgba(29, 78, 216, 0.24);
+      outline: none;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background: rgba(29, 78, 216, 0.08);
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .hero-card {
+      padding: 2rem;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(29, 78, 216, 0.18), transparent 32%);
+      pointer-events: none;
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-card p {
+      margin: 1rem 0 1.3rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .hero-metrics {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .metric {
+      display: grid;
+      gap: 0.35rem;
+      padding: 1rem 1.15rem;
+      border-radius: 18px;
+      background: rgba(29, 78, 216, 0.06);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section {
+      padding: 2rem 0;
+    }
+
+    .section-title {
+      margin: 0 0 1.8rem;
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .section-intro {
+      /* margin: 0; */
+      margin-bottom: 4;
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.75;
+    }
+
+    .skill-grid,
+    .contact-grid,
+    .grid-2 {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .skill-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .skill-card,
+    .experience-card,
+    .project-card,
+    .contact-card,
+    .resume-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .skill-card:hover,
+    .experience-card:hover,
+    .project-card:hover,
+    .contact-card:hover,
+    .resume-panel:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 90px rgba(14, 30, 73, 0.14);
+    }
+
+    .skill-card h3,
+    .experience-card h3,
+    .project-card h3,
+    .contact-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.85rem;
+      font-size: 1.05rem;
+    }
+
+    .skill-card p,
+    .experience-card p,
+    .resume-panel p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(29, 78, 216, 0.08);
+      color: var(--accent-strong);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .experience-list,
+    .project-bullets {
+      margin: 1rem 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .experience-list li,
+    .project-bullets li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .experience-list li::before,
+    .project-bullets li::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      margin-top: 0.65rem;
+      border-radius: 50%;
+      background: var(--accent-strong);
+      flex-shrink: 0;
+    }
+
+    .project-card {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .project-card .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.75rem;
+    }
+
+    .project-tags .tag {
+      background: rgba(29, 78, 216, 0.08);
+      border-color: rgba(29, 78, 216, 0.16);
+      color: var(--accent-strong);
+      font-size: 0.84rem;
+      padding: 0.55rem 0.95rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--accent-strong);
+      text-decoration: underline;
+    }
+
+    details.resume-panel {
+      cursor: pointer;
+    }
+
+    details.resume-panel summary {
+      list-style: none;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      outline: none;
+    }
+
+    details.resume-panel summary::marker {
+      display: none;
+    }
+
+    details.resume-panel p,
+    details.resume-panel li {
+      color: var(--muted);
+    }
+
+    details.resume-panel ul {
+      margin: 1rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .cta-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 2.5rem;
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 44rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .contact-card {
+      min-height: 190px;
+    }
+
+    .contact-card a {
+      color: var(--text);
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 1rem;
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 2rem 0 1rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #goToTop {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-size: 1.25rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
+      z-index: 50;
+    }
+
+    #goToTop:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .brand {
+        width: 100%;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
+      .section-title,
+      .section-intro,
+      .project-card h3,
+      .project-card .project-meta,
+      #education .project-card a,
+      #education .project-card p {
+        text-align: center;
+      }
+
+      .project-card .project-meta {
+        justify-content: center;
+        align-items: center;
+      }
+
+      #education .project-card {
+        padding: 1.2rem;
+      }
+
+      .hero-actions,
+      .cta-actions {
+        justify-content: center;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        margin: 0 auto;
+      }
+
+      .skill-card,
+      .experience-card,
+      .project-card,
+      .contact-card,
+      .resume-panel {
+        padding: 1.2rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        font-size: 15px;
+      }
+
+      .hero {
+        gap: 1.5rem;
+      }
+
+      .hero-copy h2 {
+        font-size: 2.6rem;
+      }
+
+      .section {
+        padding: 2.5rem 0;
+      }
+
+      .cta-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <h1>Adi Kanso</h1>
+        <p>Mechanical Engineer & Full Stack Developer</p>
+      </div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☀️</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">Remote-ready engineering & software leader</div>
+        <h2>Mechanical Engineer & Full Stack Developer bridging industry and digital innovation.</h2>
+        <p>
+          I deliver enterprise-grade solutions for industrial systems and modern web products. My work combines
+          engineering discipline, software craftsmanship, and measurable results for remote teams.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="mailto:eng.kansoadi@gmail.com">Contact me</a>
+          <a class="btn-secondary" href="#projects">View projects</a>
+        </div>
+      </div>
+
+      <aside class="hero-card reveal">
+        <h3>Professional profile</h3>
+        <p>
+          Dual-qualified specialist with 20+ years in power plant operations, mechanical systems, automation, and full
+          stack web development for international clients.
+        </p>
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>20+</strong>
+            <span>Years of engineering leadership</span>
+          </div>
+          <div class="metric">
+            <strong>15+</strong>
+            <span>Production software releases</span>
+          </div>
+          <div class="metric">
+            <strong>9</strong>
+            <span>Technologies used in portfolio work</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="section reveal">
+      <h2 class="section-title">About</h2>
+      <p class="section-intro">
+        I solve complex technical challenges at the intersection of physical systems and digital products. My focus is
+        on
+        reliability, automation, and modern SaaS delivery that supports remote operations.
+      </p>
+      <details class="resume-panel reveal">
+        <summary>Read expanded resume highlights</summary>
+        <p>
+          Experienced in optimizing plant reliability, managing engineering documentation, and transforming operational
+          processes with software automation. I have led cross-functional teams, created dashboards for KPI visibility,
+          and delivered responsive experiences for business stakeholders.
+        </p>
+        <ul>
+          <li>Led 10+ engineering and development initiatives for utilities, education, healthcare, and fintech.</li>
+          <li>Improved compliance and productivity through custom monitoring systems and data visualization.</li>
+          <li>Designed and deployed SaaS workflows with secure authentication, payment integration, and API controls.
+          </li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="section reveal" style="display:flex; align-items:center; justify-content:center; min-height:320px;">
+      <div style="width:100%; max-width:960px; display:flex; align-items:center; justify-content:center;">
+        <img src="linkedin-background.png" alt="LinkedIn Background"
+          style="width:100%; border-radius:1.75rem; box-shadow:0 30px 80px rgba(15,23,42,0.12);">
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2 class="section-title reveal">Skills</h2>
+      <p class="section-intro reveal">
+        Core strengths across mechanical engineering, software development, integration, and remote delivery.
+      </p>
+      <div class="skill-grid reveal">
+        <div class="skill-card">
+          <h3>Systems Engineering</h3>
+          <p>Power plants, HVAC, turbines, pumps, valves, PLCs, DCS, and industrial reliability improvement.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Software Development</h3>
+          <p>React, Next.js, Node.js, TypeScript, Python, API design, CI/CD, and cloud-native application delivery.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Data & Integration</h3>
+          <p>SQL databases, analytics tracking, secure data flows, cloud services, and operational reporting.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Remote Collaboration</h3>
+          <p>Agile execution, stakeholder communication, bilingual interfaces, and distributed team coordination.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Leadership</h3>
+          <p>Project planning, quality assurance, compliance oversight, technical mentoring, and process improvement.
+          </p>
+        </div>
+        <div class="skill-card">
+          <h3>Modern Tooling</h3>
+          <p>Framer Motion, Redux, Zustand, React Hook Form, Mapbox, AWS, Vercel, and Cloudinary workflows.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section reveal">
+      <h2 class="section-title">Education & Certifications</h2>
+      <p class="section-intro">
+        Formal education and professional certifications that support engineering, software, and data work.
+      </p>
+      <div class="grid-2">
+        <article class="project-card reveal">
+          <a href="https://www.linkedin.com/school/universit-paris-sud/" target="_blank" rel="noopener noreferrer"
+            style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <img src="UPS.jpg" alt="Université Paris XI"
+              style="width:48px; height:48px; object-fit:cover; border-radius:12px;">
+            <strong>Université Paris XI</strong>
+          </a>
+          <h3>Master’s Degree in Fluid Dynamics and Transfer Simulation</h3>
+          <p class="project-meta">1999 – 2000</p>
+        </article>
+        <article class="project-card reveal">
+          <a href="https://www.ul.edu.lb/faculte/branches.aspx?facultyId=12" target="_blank" rel="noopener noreferrer"
+            style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <img src="LU.jpg" alt="Lebanese University"
+              style="width:48px; height:48px; object-fit:cover; border-radius:12px;">
+            <strong>Lebanese University</strong>
+          </a>
+          <h3>High Diploma in Mechanical Engineering</h3>
+          <p class="project-meta">1992 – 1997</p>
+        </article>
+      </div>
+      <h3 style="margin-top:2rem;">Certifications</h3>
+      <div class="grid-2">
+        <article class="project-card reveal">
+          <a href="https://www.sefactory.io/" target="_blank" rel="noopener noreferrer"
+            style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <img src="sefactory.png" alt="SE Factory"
+              style="width:48px; height:48px; object-fit:cover; border-radius:12px;">
+            <strong>SE Factory</strong>
+          </a>
+          <h3>Machine Learning</h3>
+          <p class="project-meta">2025</p>
+        </article>
+        <article class="project-card reveal">
+          <a href="https://www.sefactory.io/" target="_blank" rel="noopener noreferrer"
+            style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <img src="sefactory.png" alt="SE Factory"
+              style="width:48px; height:48px; object-fit:cover; border-radius:12px;">
+            <strong>SE Factory</strong>
+          </a>
+          <h3>Introduction to DevOps, MLOps, and DataOps</h3>
+          <p class="project-meta">2025</p>
+        </article>
+        <article class="project-card reveal">
+          <a href="https://www.esiee-it.fr/" target="_blank" rel="noopener noreferrer"
+            style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <img src="ESIEE.jpg" alt="ESIEE-IT" style="width:48px; height:48px; object-fit:cover; border-radius:12px;">
+            <strong>ESIEE-IT</strong>
+          </a>
+          <h3>Full Stack Web Developer</h3>
+          <p class="project-meta">2022</p>
+        </article>
+        <article class="project-card reveal">
+          <a href="https://esacodinglab.com/" target="_blank" rel="noopener noreferrer"
+            style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <img src="ESA.jpg" alt="ESA Coding Lab"
+              style="width:48px; height:48px; object-fit:cover; border-radius:12px;">
+            <strong>ESA Coding Lab</strong>
+          </a>
+          <h3>Full Stack Web Developer</h3>
+          <p class="project-meta">2022</p>
+        </article>
+        <article class="project-card reveal">
+          <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" rel="noopener noreferrer"
+            style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <img src="coursera.png" alt="Coursera"
+              style="width:48px; height:48px; object-fit:cover;border-radius:12px; ">
+            <strong>Coursera</strong>
+          </a>
+          <h3>AI for Everyone</h3>
+          <p class="project-meta">2020</p>
+        </article>
+        <article class="project-card reveal">
+          <a href="https://www.coursera.org/learn/python" target="_blank" rel="noopener noreferrer"
+            style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
+            <img src="coursera.png" alt="Coursera"
+              style="width:48px; height:48px; object-fit:cover; border-radius:12px;">
+            <strong>Coursera</strong>
+          </a>
+          <h3>Programming for Everybody (Python)</h3>
+          <p class="project-meta">2020</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="section reveal">
+      <h2 class="section-title">Professional Experience</h2>
+      <p class="section-intro">
+        Engineering leadership, industrial operations, and academic instruction roles across power, mechanical, and
+        software domains.
+      </p>
+      <div class="grid-2">
+        <article class="experience-card reveal">
+          <img src="quality-mechanical-expertise.png" alt="Quality mechanical expertise"
+            style="width:100%; border-radius:1.5rem; margin-bottom:1rem;">
+          <h3>Quality Manager & Mechanical Engineer</h3>
+          <p class="status-pill">Electricité Du Liban (EDL) – Zahrani Power Plant | 2014 – 2024</p>
+          <ul class="experience-list">
+            <li>Managed gas and steam turbine operations, maintenance, and heat recovery performance.</li>
+            <li>Led electro-mechanical, HVAC, pump, and instrumentation reliability programs.</li>
+            <li>Implemented ISO-based quality and KPI monitoring systems across plant operations.</li>
+          </ul>
+        </article>
+        <!-- commented 07-07-2026 -->
+        <!-- <article class="experience-card reveal">
+          <h3>Mechanical Engineer</h3>
+          <p class="status-pill">MEES International – Beirut, Lebanon | 2001 – 2014</p>
+          <ul class="experience-list">
+            <li>Led engineering design and execution for electrical and mechanical system projects.</li>
+            <li>Delivered project planning, on-time execution, and client-driven quality control.</li>
+            <li>Mentored junior engineers and improved team productivity through process standardization.</li>
+          </ul>
+        </article> -->
+
+        <article class="experience-card reveal">
+          <h3>Instructor</h3>
+          <p class="status-pill">CNAM & Lebanese University | 2012 – 2014</p>
+          <ul class="experience-list">
+            <li>Taught building physics and numerical simulation courses with MATLAB modeling.</li>
+            <li>Developed course materials and supported students in applied engineering projects.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section reveal">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-intro">
+        Selected work that brings engineering, product design, and modern web development together.
+      </p>
+      <div class="grid-2">
+        <article class="project-card reveal">
+          <div><span class="status-pill">EduLearn Platform</span></div>
+          <h3>Lead UX — Jun 2026</h3>
+          <div class="project-meta">Next.js + TypeScript learning app — bilingual UI — offline resilience</div>
+          <ul class="project-bullets">
+            <li>Built role-based auth and admin content builders for subjects, topics, and exercises.</li>
+            <li>Developed grade-aware student learning flows with French/Arabic localization.</li>
+            <li>Added JSON-backed fallback content for resilient usability.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">i18n</span>
+          </div>
+          <a class="project-link" href="https://edulearning-topaz.vercel.app/" target="_blank"
+            rel="noopener noreferrer">View live project</a>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">EduNova Proposal</span></div>
+          <h3>Platform Proposal — May 2026</h3>
+          <div class="project-meta">School e-learning platform blueprint — role-based dashboards</div>
+          <ul class="project-bullets">
+            <li>Designed teacher, student, parent, supervisor, and admin dashboards.</li>
+            <li>Built schedules, assignments, announcements, messaging, and role-based access.</li>
+            <li>Delivered a JSON-driven UI with multi-language support.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Tailwind</span>
+          </div>
+          <a class="project-link" href="https://edunova-lyart.vercel.app/" target="_blank"
+            rel="noopener noreferrer">View live proposal</a>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">NexaStruct Showcase</span></div>
+          <h3>Full Stack — Apr 2026</h3>
+          <div class="project-meta">Reusable CMS demo — WordPress-connected showcase</div>
+          <ul class="project-bullets">
+            <li>Built a responsive engineering showcase with animated interactions.</li>
+            <li>Created an admin dashboard with CRUD, ordering, publish controls, and previews.</li>
+            <li>Prepared API routes for WordPress and independent CMS integration.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Framer Motion</span>
+          </div>
+          <a class="project-link" href="https://nexastruct-nextjs.vercel.app/" target="_blank"
+            rel="noopener noreferrer">View live project</a>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">SaveMohamad Campaign</span></div>
+          <h3>Solo Developer — Mar 2026</h3>
+          <div class="project-meta">Multilingual fundraising platform with RTL support</div>
+          <ul class="project-bullets">
+            <li>Delivered a campaign site in 9 languages, including Arabic RTL.</li>
+            <li>Added progress timeline, GDPR consent, and international donation routing.</li>
+            <li>Built a secure CMS with Cloudinary media, message templates, and canvas reels editor.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">i18n</span>
+          </div>
+          <a class="project-link" href="https://saveachild-mohamad.vercel.app/" target="_blank"
+            rel="noopener noreferrer">View live project</a>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">Fractional Real Estate</span></div>
+          <h3>Frontend Lead — 2025–26</h3>
+          <div class="project-meta">Investment platform — OAuth, dashboard analytics</div>
+          <ul class="project-bullets">
+            <li>Built secure NextAuth.js login with multiple OAuth providers and remember-me sessions.</li>
+            <li>Designed investor dashboards with portfolio metrics, transaction history, and media galleries.</li>
+            <li>Used Redux, Zustand, SWR, and Mapbox for production-ready UI.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Redux</span>
+            <span class="tag">AWS</span>
+          </div>
+          <a class="project-link" href="https://real-estat-project.vercel.app/" target="_blank"
+            rel="noopener noreferrer">View live project</a>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">E-commerce Website</span></div>
+          <h3>ITCherry — May 2024</h3>
+          <div class="project-meta">APG retail portal with responsive product catalog</div>
+          <ul class="project-bullets">
+            <li>Developed a fast responsive storefront using Next.js and Tailwind.</li>
+            <li>Created search and contact workflows for seamless customer lead capture.</li>
+            <li>Deployed on Vercel for reliable production performance.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+          </div>
+          <a class="project-link" href="https://www.apg-lb.com/" target="_blank" rel="noopener noreferrer">View live
+            platform</a>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">Digital Healthcare Platform</span></div>
+          <h3>Startup — Sep 2023 – Aug 2024</h3>
+          <div class="project-meta">Patient-provider SaaS app with scheduling and payments</div>
+          <ul class="project-bullets">
+            <li>Developed clinic workflows, schedule management, and patient portals using Next.js and Strapi.</li>
+            <li>Integrated Stripe checkout and AWS deployment across Amplify, EC2, S3, and RDS.</li>
+            <li>Optimized data-driven UX for healthcare operations.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">AWS</span>
+            <span class="tag">SQL</span>
+          </div>
+          <a class="project-link" href="https://main.d1b7orjfwwu8wb.amplifyapp.com/welcome" target="_blank"
+            rel="noopener noreferrer">View live platform</a>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">Small Generator Research</span></div>
+          <h3>Academic Study — Jun 2023 – Oct 2023</h3>
+          <div class="project-meta">Hardware testing and Python analysis for generator curves</div>
+          <ul class="project-bullets">
+            <li>Built test fixtures in Autodesk Inventor and Arduino data acquisition circuits.</li>
+            <li>Collected precision voltage/current data and generated characteristic curves.</li>
+            <li>Automated analysis with Python for accurate performance reports.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">ML</span>
+          </div>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">Quicotech E-commerce</span></div>
+          <h3>ITCherry — Apr 2023 – Jun 2023</h3>
+          <div class="project-meta">Online storefront with Firebase-powered inventory</div>
+          <ul class="project-bullets">
+            <li>Built dynamic inventory and shopping cart user experiences with Next.js and TypeScript.</li>
+            <li>Used Firebase for storage and admin order lookup functionality.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">Firebase</span>
+            <span class="tag">Next.js</span>
+          </div>
+          <a class="project-link" href="https://www.quicotech.com/" target="_blank" rel="noopener noreferrer">View live
+            project</a>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">Student Information System</span></div>
+          <h3>ESA University — Oct 2022 – Jul 2023</h3>
+          <div class="project-meta">Online school SIS portal with PostgreSQL backend</div>
+          <ul class="project-bullets">
+            <li>Built a student enrollment and grade tracking portal for university operations.</li>
+            <li>Integrated REST APIs and PostgreSQL for reliable academic record management.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">SQL</span>
+            <span class="tag">Node.js</span>
+          </div>
+          <a class="project-link" href="http://inscription.esa.edu.lb/" target="_blank" rel="noopener noreferrer">View
+            related site</a>
+        </article>
+        <article class="project-card reveal">
+          <div><span class="status-pill">Bootcamp Projects</span></div>
+          <h3>Full Stack Developer Bootcamp — 2021 – 2022</h3>
+          <div class="project-meta">MERN stack apps, real-time features, and mentor-led delivery</div>
+          <ul class="project-bullets">
+            <li>Delivered blog systems, e-commerce prototypes, and real-time communication utilities.</li>
+            <li>Mentored peers and led team sprints to meet milestone delivery.</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag">MERN</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">React</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="cta-panel">
+        <div>
+          <h2 class="section-title">Open to remote opportunities</h2>
+          <p>
+            Let's collaborate to build remote-ready products that connect engineering reliability with clear digital
+            value. I'm available for long-term contracts, full-time roles, and strategic product work.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn-primary" href="mailto:eng.kansoadi@gmail.com">Email me</a>
+          <a class="btn-secondary" href="https://www.linkedin.com/in/adi-kanso/" target="_blank"
+            rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section reveal">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-intro">
+        Reach out for remote engineering or development roles. I respond quickly to qualified opportunities.
+      </p>
+      <div class="contact-grid ">
+        <article class="contact-card">
+          <h3>Email</h3>
+          <p>Preferred contact for hiring managers and technical leads.</p>
+          <a href="mailto:eng.kansoadi@gmail.com">eng.kansoadi@gmail.com</a>
+        </article>
+
+        <article class="contact-card">
+          <h3>LinkedIn</h3>
+          <p>Connect for remote roles, collaboration, and professional references.</p>
+          <a href="https://www.linkedin.com/in/adi-kanso/" target="_blank" rel="noopener noreferrer">View profile</a>
+        </article>
+
+        <article class="contact-card">
+          <h3>GitHub</h3>
+          <p>Review code examples, front-end work, and full-stack deployments.</p>
+          <a href="https://github.com/kansoadi" target="_blank" rel="noopener noreferrer">View GitHub</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Adi Kanso. Built with a focus on clarity and professionalism.</p>
+  </footer>
+
+  <button id="goToTop" onclick="scrollToTop()" title="Go to top">↑</button>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const storedTheme = localStorage.getItem('portfolio-theme');
+    const root = document.documentElement;
+
+    if (storedTheme) {
+      root.setAttribute('data-theme', storedTheme);
+      themeToggle.textContent = storedTheme === 'dark' ? '🌙' : '☀️';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('portfolio-theme', nextTheme);
+      themeToggle.textContent = nextTheme === 'dark' ? '🌙' : '☀️';
+    });
+
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(element => observer.observe(element));
+
+    const goToTopButton = document.getElementById('goToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 120) {
+        goToTopButton.style.display = 'flex';
+      } else {
+        goToTopButton.style.display = 'none';
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
